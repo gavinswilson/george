@@ -1,5 +1,5 @@
-import win32com.client
-import win32api
+from shutil import *
+from psutil import *
 
 def open_physical_drive(
     number,
@@ -26,45 +26,9 @@ def open_physical_drive(
         opener,
     )
 
-
-def open_windows_partition_read(
-    letter,
-    mode="rb",
-    buffering=-1,
-    encoding=None,
-    errors=None,
-    newline=None,
-    closefd=True,
-    opener=None,
-):
-    """
-    Opens a partition of a windows drive letter in read binary mode by default
-    """
-    return open(
-        fr"\\.\{letter}:", mode, buffering, encoding, errors, newline, closefd, opener
-    )
-
-def open_windows_partition_write(
-    letter,
-    mode="wb",
-    buffering=-1,
-    encoding=None,
-    errors=None,
-    newline=None,
-    closefd=True,
-    opener=None,
-):
-    """
-    Opens a partition of a windows drive letter in read binary mode by default
-    """
-    return open(
-        fr"\\.\{letter}:", mode, buffering, encoding, errors, newline, closefd, opener
-    )
-
 def get_list_of_drives():
-    drives = win32api.GetLogicalDrives()
-    # print(drives)
-    num_bits = 8
-    bits = [(drives >> bit) & 1 for bit in range(num_bits - 1, -1, -1)]
-    bits.reverse()
-    return bits
+    # drives = disk_partitions()
+    drive_info = disk_usage("/dev/sda1")
+    print(drive_info)
+    for i in drive_info:
+        print(i)

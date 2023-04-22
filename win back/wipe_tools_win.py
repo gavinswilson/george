@@ -1,4 +1,6 @@
 from  drive_tools import *
+import win32com.client
+import win32api
 import sys
 import traceback
 import os
