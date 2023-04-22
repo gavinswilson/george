@@ -1,0 +1,7 @@
+Error running main function as admin
+Traceback (most recent call last):
+  File "C:\Users\gavin.wilson\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.9_qbz5n2kfra8p0\LocalCache\local-packages\Python39\site-packages\pyuac\main_decorator.py", line 89, in main_requires_admin
+    rv = run_function(*args, **kwargs)
+  File "c:\Users\gavin.wilson\python\read_drive_data.py", line 23, in main
+    print("Drive Size:" + size + " bytes")
+TypeError: can only concatenate str (not "int") to str
