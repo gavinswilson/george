@@ -10,19 +10,33 @@ def check_blank(drive_name, offset, size):
     print("blank check in process")
     print("starting at:" + str(offset))
     try:
-        with open_windows_partition_read(drive_name) as drive_to_read:
+        with open(drive_name, "rb") as drive_to_read:
             # drive_to_read.seek(offset)
-            drive_to_read.seek(-1,2)
+            # drive_to_read.seek(-1,2)
             print(drive_to_read.tell())
-            drive_to_read.seek(0,0)
+            # drive_to_read.seek(0,0)
             
             for i in range(size):
                 print("posn:" + str(drive_to_read.tell()))
                 data = drive_to_read.read(16)
                 if data != 0:
                     print(data) 
-    except:
-        print ("Drive not found")
+    except BaseException as ex:
+    # Get current system exception
+        ex_type, ex_value, ex_traceback = sys.exc_info()
+
+        # Extract unformatter stack traces as tuples
+        trace_back = traceback.extract_tb(ex_traceback)
+
+        # Format stacktrace
+        stack_trace = list()
+
+        for trace in trace_back:
+            stack_trace.append("File : %s , Line : %d, Func.Name : %s, Message : %s" % (trace[0], trace[1], trace[2], trace[3]))
+
+        print("Exception type : %s " % ex_type.__name__)
+        print("Exception message : %s" %ex_value)
+        print("Stack trace : %s" %stack_trace)
 
 def write_drive(drive_name, write_bits, size):
     print("write in process")

@@ -1,7 +1,7 @@
 from shutil import *
 from psutil import *
 
-def open_physical_drive(
+def open_physical_drive_read(
     number,
     mode="rb",
     buffering=-1,

@@ -3,7 +3,11 @@ from drive_tools import *
 from psutil import *
 
 def main():
-    disks = get_list_of_drives()
+    # disks = get_list_of_drives()
+
+    check_blank('/dev/sda', 0, 16)
+
+
 
     # for i in disks:
     #      print (i)

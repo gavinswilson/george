@@ -1,0 +1,23 @@
+sudo mkfs -t vfat /dev/sda1
+
+
+sudo dd if=/dev/zero of=/dev/sda1 bs=4096 status=progress
+
+tr '\0' '\377' < /dev/zero > /dev/sdb
+
+sudo dd if=/dev/zero bs=65536 | sudo tr '\0' '\377' | sudo dd of=/dev/sda bs=65536 status=progress
+
+
+wipe options:
+pass random data through binary File 
+pass Zeros 
+check Zeros 
+
+pass pattern a 
+pass pattern b 
+pass zeros 
+check zeros 
+
+use SCSI to get all information from drives 
+
+
